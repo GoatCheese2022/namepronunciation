@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user", schema = "public")
 public class User implements Serializable{
 	
 	
@@ -19,17 +19,29 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "User_ID")
+	@Column(name = "user_id")
 	String userId;
 	
-	@Column(name = "Legal_First_Name")
+	@Column(name = "legal_first_name")
 	String firstName;
 	
-	@Column(name = "Legal_Last_Name")
+	@Column(name = "legal_last_name")
 	String lastName;
 	
-	@Column(name = "Prefered_Name")
+	@Column(name = "prefered_name")
 	String preferedName;
+
+	@Column(name = "work_phone")
+	String workPhone;
+	
+	@Column(name = "email")
+	String email;
+	
+	@Column(name = "mac")
+	String mac;
+	
+	@Column(name = "logon_id")
+	String logonId;
 
 	public String getUserId() {
 		return userId;
@@ -61,6 +73,38 @@ public class User implements Serializable{
 
 	public void setPreferedName(String preferedName) {
 		this.preferedName = preferedName;
+	}
+
+	public String getWorkPhone() {
+		return workPhone;
+	}
+
+	public void setWorkPhone(String workPhone) {
+		this.workPhone = workPhone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMac() {
+		return mac;
+	}
+
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+
+	public String getLogonId() {
+		return logonId;
+	}
+
+	public void setLogonId(String logonId) {
+		this.logonId = logonId;
 	}
 	
 
