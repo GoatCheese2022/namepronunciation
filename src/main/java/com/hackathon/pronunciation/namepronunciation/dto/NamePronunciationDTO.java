@@ -23,7 +23,7 @@ public class NamePronunciationDTO implements Serializable{
 	public String getLastName() {
 		return lastName;
 	}
-	public String getPreferredName() {
+	public String getPreferedName() {
 		return preferedName;
 	}
 	
@@ -39,16 +39,5 @@ public class NamePronunciationDTO implements Serializable{
 	public void setPreferedName(String preferedName) {
 		this.preferedName =  preferedName;
 	}
-
-	
-/*	public NamePronunciationDTO(final String userId, final String firstName, final String lastName, final String preferredName) {
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.preferredName = preferredName;
-	}*/
-
-
-	
 	
 }
