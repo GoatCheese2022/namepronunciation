@@ -63,4 +63,12 @@ public class NamePronunciationController {
 		
 		return namePronunciationService.getAudio(userId);
 	}
+	
+	@GetMapping("/authenticate")
+	public ResponseEntity<Boolean> getAuthenticate(@RequestParam("userId") final String userId,  @RequestParam("password") final String password ){
+		
+		logger.info("Authenticate User for :"+userId);
+		
+		return namePronunciationService.getAuthenticate(userId, password);
+	}
 }

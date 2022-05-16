@@ -19,5 +19,7 @@ public interface NamePronunciationService {
 	ResponseEntity<NamePronunciationsDTO> saveAudio(MultipartFile file, String userId);
 	
 	ResponseEntity<Resource> getAudio(String userId) throws FileNotFoundException, IOException;
+	
+	ResponseEntity<Boolean> getAuthenticate(String userId, String password);
 
 }

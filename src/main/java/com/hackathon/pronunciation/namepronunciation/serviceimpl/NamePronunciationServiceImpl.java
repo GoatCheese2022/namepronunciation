@@ -1,11 +1,8 @@
 package com.hackathon.pronunciation.namepronunciation.serviceimpl;
 
 import java.io.ByteArrayInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
@@ -15,8 +12,6 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -26,13 +21,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.hackathon.pronunciation.namepronunciation.dto.NamePronunciationDTO;
 import com.hackathon.pronunciation.namepronunciation.dto.NamePronunciationsDTO;
 import com.hackathon.pronunciation.namepronunciation.entity.User;
+import com.hackathon.pronunciation.namepronunciation.entity.UserLogin;
 import com.hackathon.pronunciation.namepronunciation.entity.Users;
 import com.hackathon.pronunciation.namepronunciation.exceptions.NotFoundException;
+import com.hackathon.pronunciation.namepronunciation.repository.UserLoginRepository;
 import com.hackathon.pronunciation.namepronunciation.repository.UserRepository;
 import com.hackathon.pronunciation.namepronunciation.repository.UsersRepository;
 import com.hackathon.pronunciation.namepronunciation.service.NamePronunciationService;
@@ -45,6 +41,9 @@ public class NamePronunciationServiceImpl implements NamePronunciationService{
 	
 	@Autowired
 	private UsersRepository usersRepository;
+	
+	@Autowired
+	private UserLoginRepository userLoginRepository;
 	
 	@Autowired
 	private ModelMapper mapper;
@@ -151,6 +150,19 @@ public class NamePronunciationServiceImpl implements NamePronunciationService{
 		                .body(resource);
 		
 
+	}
+
+	@Override
+	public ResponseEntity<Boolean> getAuthenticate(String userId, String password) {
+		
+		UserLogin usersOptional = userLoginRepository.findByUserIdAndPassword(userId, password);
+		if(usersOptional!=null) {
+			return ResponseEntity.status(HttpStatus.OK).body(Boolean.TRUE);
+		}
+		else {
+			return ResponseEntity.status(HttpStatus.OK).body(Boolean.FALSE);
+		}
+		
 	}
 	
 	
